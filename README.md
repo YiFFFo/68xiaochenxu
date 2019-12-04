@@ -6,7 +6,7 @@
 
 ``` bash
 # install dependencies
-yarn ssssss
+yarn aaaaaaaaaaaaaaa
 
 # serve with hot reload at localhost:8080
 npm dev
