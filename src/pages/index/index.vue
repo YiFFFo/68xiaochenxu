@@ -3,11 +3,11 @@
 		<!-- 头部 -->
 		<div class="h-head padding">
 			<div class="logo">
-				<img src="https://m.68jiaoyu.com/skin/image/icon/log1.png" mode="widthFix" />
+                    <img src="/static/images/icon/logo.png" mode="widthFix" />
 			</div>
 
 			<div class="city">
-				<navigator target="self" open-type="navigate" url="/pages/city/main">{{ cityName }}</navigator>
+				<navigator target="self" open-type="navigate" url="/pages/city/main">当前城市名</navigator>
 				<img src="/static/images/icon/right.png" mode="widthFix" alt />
 			</div>
 
@@ -16,7 +16,7 @@
 			</div>
 			<MenuH v-if="mShow" @cMshow="getMshow"></MenuH>
 		</div>
-        <!-- <headF></headF> -->
+
 		<div :class="mShow ? 'bottom-fixed' : ''">
 			<bannerSwiper></bannerSwiper>
 			<!-- 首页导航 -->
@@ -51,42 +51,174 @@
 							:key="index"
 							@click="changeActiveIndex(index)"
 							:class="activeIndexOne == index ? 'on' : '' "
-						>{{ item }}</div>
+						>{{ item.title }}</div>
 					</div>
 
-					<div class="body-tab">
-						<div v-show="activeIndexOne == 0">
-							<div class="tab-list">
-								<a href="/pages/sch-index/main" class="list-a">
+					<div class="body-tab"   >
+						
+						<div v-show="activeIndexOne == 0"    >
+							<div class="tab-list" v-for="(item, index) in company1" :key="index" >
+							
+							
+								<a :href="item.linkurl" class="list-a">
 									<div class="img">
-										<!-- <img src="" alt=""> -->
+										 <img :src="item.thumb"  alt="">
 									</div>
 									<div class="con">
-										<h4>四川文化传媒职业学院</h4>
+										<h4>{{ item.company }}</h4>
 										<div class="sch-xz">
-											<span class="xz_1">中专院校</span>
-											<span class="xz_2">国家级重点</span>
+											<span class="xz_1">{{ item.type }}</span>
+											<span class="xz_2">{{ item.dengji }}</span>
 										</div>
 										<div class="hot-zy">
 											热招专业:
-											<span>电子商务</span>
-											<span>电子商务</span>
-											<span>电子商务</span>
+											<span>{{ item.hots }}</span>
+											
 										</div>
 									</div>
 								</a>
 								<a href="#" class="sch-adress">
-									<!-- <img src="" alt=""> -->
-									<span>学校地址:学校地址学校地址学校地址学校地址</span>
+									
+									<span>学校地址:{{ item.address }}</span>
 								</a>
+								
+					
 							</div>
 
 							<a href="#" class="l-more">查看更多热门学校</a>
 						</div>
-						<div v-show="activeIndexOne == 1">1</div>
-						<div v-show="activeIndexOne == 2">2</div>
-						<div v-show="activeIndexOne == 3">3</div>
-						<div v-show="activeIndexOne == 4">4</div>
+						<div v-show="activeIndexOne == 1">
+						   <div class="tab-list" v-for="(item, index) in company2" :key="index" >
+							
+							
+								<a :href="item.linkurl" class="list-a">
+									<div class="img">
+										 <img :src="item.thumb"  alt="">
+									</div>
+									<div class="con">
+										<h4>{{ item.company }}</h4>
+										<div class="sch-xz">
+											<span class="xz_1">{{ item.type }}</span>
+											<span class="xz_2">{{ item.dengji }}</span>
+										</div>
+										<div class="hot-zy">
+											热招专业:
+											<span>{{ item.hots }}</span>
+											
+										</div>
+									</div>
+								</a>
+								<a href="#" class="sch-adress">
+									
+									<span>学校地址:{{ item.address }}</span>
+								</a>
+								
+					
+							</div>
+
+							<a href="#" class="l-more">查看更多热门学校</a>
+						
+						
+						</div>
+						<div v-show="activeIndexOne == 2">
+						<div class="tab-list" v-for="(item, index) in company3" :key="index" >
+							
+							
+								<a :href="item.linkurl" class="list-a">
+									<div class="img">
+										 <img :src="item.thumb"  alt="" mode="widthFix">
+									</div>
+									<div class="con">
+										<h4>{{ item.company }}</h4>
+										<div class="sch-xz">
+											<span class="xz_1">{{ item.type }}</span>
+											<span class="xz_2">{{ item.dengji }}</span>
+										</div>
+										<div class="hot-zy">
+											热招专业:
+											<span>{{ item.hots }}</span>
+											
+										</div>
+									</div>
+								</a>
+								<a href="#" class="sch-adress">
+									
+									<span>学校地址:{{ item.address }}</span>
+								</a>
+								
+					
+							</div>
+
+							<a href="#" class="l-more">查看更多热门学校</a>
+						
+						
+						</div>
+						<div v-show="activeIndexOne == 3">
+						<div class="tab-list" v-for="(item, index) in company4" :key="index" >
+							
+							
+								<a :href="item.linkurl" class="list-a">
+									<div class="img">
+										 <img :src="item.thumb"  alt="">
+									</div>
+									<div class="con">
+										<h4>{{ item.company }}</h4>
+										<div class="sch-xz">
+											<span class="xz_1">{{ item.type }}</span>
+											<span class="xz_2">{{ item.dengji }}</span>
+										</div>
+										<div class="hot-zy">
+											热招专业:
+											<span>{{ item.hots }}</span>
+											
+										</div>
+									</div>
+								</a>
+								<a href="#" class="sch-adress">
+									
+									<span>学校地址:{{ item.address }}</span>
+								</a>
+								
+					
+							</div>
+
+							<a href="#" class="l-more">查看更多热门学校</a>
+						
+						</div>
+						<div v-show="activeIndexOne == 4">
+						
+						<div class="tab-list" v-for="(item, index) in company5" :key="index" >
+							
+							
+								<a :href="item.linkurl" class="list-a">
+									<div class="img">
+										 <img :src="item.thumb"  alt="">
+									</div>
+									<div class="con">
+										<h4>{{ item.company }}</h4>
+										<div class="sch-xz">
+											<span class="xz_1">{{ item.type }}</span>
+											<span class="xz_2">{{ item.dengji }}</span>
+										</div>
+										<div class="hot-zy">
+											热招专业:
+											<span>{{ item.hots }}</span>
+											
+										</div>
+									</div>
+								</a>
+								<a href="#" class="sch-adress">
+									
+									<span>学校地址:{{ item.address }}</span>
+								</a>
+								
+					
+							</div>
+
+							<a href="#" class="l-more">查看更多热门学校</a>
+						
+						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -104,7 +236,7 @@
 					<span>成都热门专业</span>
 					<div class="right">
 						<span>更多</span>
-						<img src="/static/images/icon/right.png" alt mode="widthFix" />
+						<img src="/static/images/icon/right.png"  mode="widthFix" />
 					</div>
 				</a>
 
@@ -120,14 +252,14 @@
 
 					<div class="body-tab">
 						<div v-show="activeIndexTwo == 0">
-							<a href="#" class="link">
-								<div class="img">
-									<!-- <img src="" alt=""> -->
-								</div>
+							<a href="#">
+							 <img src="" alt=""  mode="widthFix"  />
 								<p>航空服务</p>
 							</a>
 							<a href="#" class="l-more">查看更多热门专业</a>
 						</div>
+						
+						
 						<div v-show="activeIndexTwo == 1">1</div>
 						<div v-show="activeIndexTwo == 2">2</div>
 						<div v-show="activeIndexTwo == 3">3</div>
@@ -230,7 +362,7 @@
 			<div class="article-tab padding">
 				<div class="head-tab">
 					<div
-						v-for="(item, index) in tabs1"
+						v-for="(item, index) in tabs3"
 						:key="index"
 						@click="changeActiveIndexThree(index)"
 						:class="activeIndexThree == index ? 'on' : '' "
@@ -268,51 +400,39 @@ import footerF from "@/components/footerF";
 import MenuH from "@/components/MenuH";
 import bannerSwiper from "@/components/bannerSwiper";
 import cascade from "@/components/cascade";
-import amapFile from "@/utils/amap-wx.js";
-import headF from "@/components/headF";
 
 export default {
 	components: {
 		footerF,
 		MenuH,
 		bannerSwiper,
-        cascade,
-        headF
+		cascade
 	},
 	data() {
 		return {
-			cityName: "",
-			hNav: [],
+            hNav:[],
 			tabs1: ["中专", "技校", "普高", "职高", "五年制"],
+			company1:[],
+			company2:[],
+			company3:[],
+			company4:[],
+			company5:[],
 			activeIndexOne: 0,
 			tabs2: ["航空高铁", "财经贸易", "医药医学", "汽车维修"],
 			activeIndexTwo: 0,
+			tabs3: ["职校新闻", "行业政策", "招生问答", "就业前景"],
 			activeIndexThree: 0,
 			mShow: false
 		};
 	},
 
 	created() {
-        let app = getApp();
-        
+		let app = getApp();
+		 this.gethNav();
+		this.get_company();
 	},
 	mounted() {
-        this.gpsCity();
-        let _this = this;
-        this.$http.post({
-            url:'/uniapp/index.inc.php',
-            data:{
-				action: "gethNav"
-            },
-            success(res){
-                console.log(res);
-                _this.hNav = res.data;
-                console.log(_this.hNav);
-            },
-            error(err){
-                console.log(err);
-            }
-        })
+	   
 	},
 	methods: {
 		changeActiveIndex(index) {
@@ -330,44 +450,145 @@ export default {
 		getMshow(data) {
 			this.mShow = data;
 		},
-		//定位城市
-		gpsCity() {
-			var that = this;
-			//调用自带位置获取
-			mpvue.getLocation({
-				type: "gcj02", //返回可以用于mpvue.openLocation的经纬度
-				success: function(res) {
-					var latitude = res.latitude; //维度
-					var longitude = res.longitude; //经度
-					that.loadCity(latitude, longitude); //调用高德
-				}
-			});
-        },
-		//把当前位置的经纬度传给高德地图，调用高德API获取当前地理位置信息
-		loadCity(latitude, longitude) {
-			var that = this;
-			var myAmapFun = new amapFile.AMapWX({
-				key: "891a32738608eda42e8f2ffba1151fdc"
-			});
-			myAmapFun.getRegeo({
-				success: function(data) {
-					var cityCode = data[0].regeocodeData.addressComponent.adcode; //获取城市code
-					that.gpsCode = cityCode;
-					that.city_name =data[0].regeocodeData.addressComponent.city; //获取城市名称
-					that.cityName = that.city_name;
-					const key = "mockData";
-					mpvue.getStorage({
-						key,
-						success: res => console.log("获取成功", res.data[0].regeocodeData.addressComponent.province),
-						fail: () => console.log("获取失败"),
-						complete: () => console.log("获取完成")
-					});
+		
+		gethNav() {
+		
+		    let that = this;
+		    swan.request({
+            url: 'https://www.68jiaoyu.com.cn/uniapp/index.inc.php',
+            header: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            dataType: 'json',
+            responseType: 'text',
+            data: {
+                action: 'gethNav'
+            },
+            success: res => {
+                
+				that.hNav = res.data;
+            },
+            fail: err => {
+                console.log('错误码：' + err.errCode);
+                console.log('错误信息：' + err.errMsg);
+            }
+        });
+		
+		},
+		get_company() {
+		
+		    let that = this;
+		    swan.request({
+				url: 'https://www.68jiaoyu.com.cn/uniapp/company.inc.php',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
 				},
-				fail: function(info) {
-					console.log(info);
+				method: 'POST',
+				dataType: 'json',
+				responseType: 'text',
+				data: {
+					catid: '99',
+					count: '5'
+				},
+				success: res => {
+					
+					that.company1 = res.data;
+				},
+				fail: err => {
+					console.log('错误码：' + err.errCode);
+					console.log('错误信息：' + err.errMsg);
 				}
-			});
-		}
+           });
+		    swan.request({
+				url: 'https://www.68jiaoyu.com.cn/uniapp/company.inc.php',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'POST',
+				dataType: 'json',
+				responseType: 'text',
+				data: {
+					catid: '100',
+					count: '5'
+				},
+				success: res => {
+					
+					that.company2 = res.data;
+				},
+				fail: err => {
+					console.log('错误码：' + err.errCode);
+					console.log('错误信息：' + err.errMsg);
+				}
+           });
+		    swan.request({
+				url: 'https://www.68jiaoyu.com.cn/uniapp/company.inc.php',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'POST',
+				dataType: 'json',
+				responseType: 'text',
+				data: {
+					catid: '378',
+					count: '5'
+				},
+				success: res => {
+					
+					that.company3 = res.data;
+				},
+				fail: err => {
+					console.log('错误码：' + err.errCode);
+					console.log('错误信息：' + err.errMsg);
+				}
+           });
+		    swan.request({
+				url: 'https://www.68jiaoyu.com.cn/uniapp/company.inc.php',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'POST',
+				dataType: 'json',
+				responseType: 'text',
+				data: {
+					catid: '101',
+					count: '5'
+				},
+				success: res => {
+					
+					that.company4 = res.data;
+				},
+				fail: err => {
+					console.log('错误码：' + err.errCode);
+					console.log('错误信息：' + err.errMsg);
+				}
+           });
+	         swan.request({
+				url: 'https://www.68jiaoyu.com.cn/uniapp/company.inc.php',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				method: 'POST',
+				dataType: 'json',
+				responseType: 'text',
+				data: {
+					catid: '103',
+					count: '5'
+				},
+				success: res => {
+					
+					that.company5 = res.data;
+				},
+				fail: err => {
+					console.log('错误码：' + err.errCode);
+					console.log('错误信息：' + err.errMsg);
+				}
+           });
+			
+		},
+		
+		
+		
 	}
 };
 </script>
@@ -379,9 +600,9 @@ export default {
 	left: 0;
 	width: 100%;
 	background-color: #fff;
-	display: flex;
-	align-items: center;
-
+    display: flex;
+    align-items: center;
+    
 	height: 100rpx;
 	justify-content: space-between;
 	padding-top: 10rpx;
@@ -392,19 +613,17 @@ export default {
 		display: flex;
 		align-items: center;
 		image {
-			width: 100%;
+			width: 300rpx;
 		}
 	}
 
 	.city {
 		flex: 1;
-		margin-left: 20rpx;
 		width: 200rpx;
 		display: flex;
 		align-items: center;
 		image {
-			width: 14rpx;
-			margin-left: 10rpx;
+			width: 10rpx;
 		}
 	}
 
@@ -508,9 +727,9 @@ export default {
 						}
 					}
 					.con {
-						flex: 1;
-						margin-left: 20rpx;
-						min-width: 0;
+                        flex:1;
+                        margin-left:20rpx;
+                        min-width: 0;
 						h4 {
 							font-size: 16px;
 						}
@@ -570,33 +789,6 @@ export default {
 	.tab-list {
 		padding-top: 30rpx;
 		padding-bottom: 30rpx;
-	}
-	.body-tab {
-		padding-top: 40rpx;
-		& > div {
-			.link {
-				width: 48%;
-				margin-right: 2%;
-				margin-bottom: 20rpx;
-				&:nth-of-type(even) {
-					margin-right: 0;
-				}
-				.img {
-					width: 100%;
-					height: 240rpx;
-					background-color: #ccc;
-					overflow: hidden;
-					img {
-						width: 100%;
-						border-radius: 10rpx;
-					}
-				}
-				p {
-					text-align: center;
-					margin-top: 8rpx;
-				}
-			}
-		}
 	}
 }
 
