@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/xzxx/main",
+    "pages/zszy/main",
+    "pages/zszy-info/main",
+    "pages/zzyx/main",
+    "pages/article/main",
+    "pages/article-info/main",
+    "pages/lxwm/main",
+    "pages/gywm/main",
+    "pages/wzsm/main",
+    "pages/wzdt/main",
+    "pages/city/main",
+
+
+    "pages/sch-index/main",
+    "pages/sch-synopsis/main",
+    "pages/sch-news/main",
+    "pages/sch-information/main",
+    "pages/sch-major/main",
+    "pages/sch-photo/main",
+    "pages/sch-QA/main",
+    "pages/sch-contact/main",
+    "pages/sch-list/main"
+
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },
+      {
+        "text": "选择学校",
+        "pagePath": "pages/xzxx/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序的数据展示" 
+    }
+  }
+}
