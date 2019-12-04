@@ -7,12 +7,12 @@ function request(url, method, data, success, error, header = {}) {
     })
     mpvue.request({
         url: host + url,
-        method: method,
-        data: data,
-        dataType:"json",
-        headers: {
+        header: {
             'content-type': 'application/x-www-form-urlencoded' 
         },
+        method: method,
+        dataType:"json",
+        data: data,
         success: function (res) {
             mpvue.hideLoading();
             success(res)

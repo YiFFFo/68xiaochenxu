@@ -16,7 +16,7 @@
 			</div>
 			<MenuH v-if="mShow" @cMshow="getMshow"></MenuH>
 		</div>
-        <!-- <headF></headF> -->
+		<!-- <headF></headF> -->
 		<div :class="mShow ? 'bottom-fixed' : ''">
 			<bannerSwiper></bannerSwiper>
 			<!-- 首页导航 -->
@@ -31,18 +31,18 @@
 
 			<!-- 热门学校 -->
 			<div class="hot-school padding">
-				<div class="t-head">
+				<a href="#" class="t-head" >
 					<img
 						src="https://m.68jiaoyu.com/skin/image/new/remenxuexxiao.png"
 						mode="widthFix"
 						style="width:50rpx;"
 					/>
-					<span>成都热门学校</span>
+					<span>{{ cityName }}热门学校</span>
 					<div class="right">
 						<span>更多</span>
 						<img src="/static/images/icon/right.png" alt mode="widthFix" />
 					</div>
-				</div>
+				</a>
 
 				<div class="h-body">
 					<div class="head-tab">
@@ -55,38 +55,32 @@
 					</div>
 
 					<div class="body-tab">
-						<div v-show="activeIndexOne == 0">
-							<div class="tab-list">
-								<a href="/pages/sch-index/main" class="list-a">
+						<div v-show="index == activeIndexOne" v-for="(item, index) in hBody" :key="index">
+							<div class="tab-list" v-for="(value, sup) in item" :key="sup">
+								<a :href="value.linkurl" class="list-a">
 									<div class="img">
-										<!-- <img src="" alt=""> -->
+										<img :src="value.thumb" alt mode="widthFix" />
 									</div>
 									<div class="con">
-										<h4>四川文化传媒职业学院</h4>
+										<h4>{{ value.company }}</h4>
 										<div class="sch-xz">
-											<span class="xz_1">中专院校</span>
-											<span class="xz_2">国家级重点</span>
+											<span class="xz_1">{{ value.type }}</span>
+											<span class="xz_2">{{ value.dengji }}</span>
 										</div>
 										<div class="hot-zy">
 											热招专业:
-											<span>电子商务</span>
-											<span>电子商务</span>
-											<span>电子商务</span>
+											<span>{{ value.hots }}</span>
 										</div>
 									</div>
 								</a>
-								<a href="#" class="sch-adress">
+								<a :href="value.linkurl" class="sch-adress">
 									<!-- <img src="" alt=""> -->
-									<span>学校地址:学校地址学校地址学校地址学校地址</span>
+									<span>学校地址:{{ value.address }}</span>
 								</a>
 							</div>
 
 							<a href="#" class="l-more">查看更多热门学校</a>
 						</div>
-						<div v-show="activeIndexOne == 1">1</div>
-						<div v-show="activeIndexOne == 2">2</div>
-						<div v-show="activeIndexOne == 3">3</div>
-						<div v-show="activeIndexOne == 4">4</div>
 					</div>
 				</div>
 			</div>
@@ -101,7 +95,7 @@
 						mode="widthFix"
 						style="width:50rpx;"
 					/>
-					<span>成都热门专业</span>
+					<span>{{ cityName }}热门专业</span>
 					<div class="right">
 						<span>更多</span>
 						<img src="/static/images/icon/right.png" alt mode="widthFix" />
@@ -119,19 +113,15 @@
 					</div>
 
 					<div class="body-tab">
-						<div v-show="activeIndexTwo == 0">
-							<a href="#" class="link">
+						<div v-show="index == activeIndexOne" v-for="(item, index) in items" :key="index">
+							<a href="#" class="link" v-for="(value, sup) in item" :key="sup">
 								<div class="img">
-									<!-- <img src="" alt=""> -->
+									<!-- <img :src="" alt="" mode="widthFix"> -->
 								</div>
 								<p>航空服务</p>
 							</a>
 							<a href="#" class="l-more">查看更多热门专业</a>
 						</div>
-						<div v-show="activeIndexTwo == 1">1</div>
-						<div v-show="activeIndexTwo == 2">2</div>
-						<div v-show="activeIndexTwo == 3">3</div>
-						<div v-show="activeIndexTwo == 4">4</div>
 					</div>
 				</div>
 			</div>
@@ -238,13 +228,13 @@
 				</div>
 
 				<div class="body-tab">
-					<div v-show="activeIndexThree == 0">
+					<div v-show="index == activeIndexThree" v-for="(item, index) in items" :key="index">
 						<div>
 							<a
 								href="#"
 								class="link dot"
-								v-for="(item, index) in ['标题1','标题2','标题3','标题4','标题5','标题6']"
-								:key="index"
+								v-for="(value, sup) in item"
+								:key="sup"
 							>
 								<span class="text">{{ item }}</span>
 								<span class="time">11-01</span>
@@ -252,9 +242,7 @@
 						</div>
 						<a href="#" class="l-more">查看更多</a>
 					</div>
-					<div v-show="activeIndexThree == 1">1</div>
-					<div v-show="activeIndexThree == 2">2</div>
-					<div v-show="activeIndexThree == 3">3</div>
+					
 				</div>
 			</div>
 
@@ -276,13 +264,14 @@ export default {
 		footerF,
 		MenuH,
 		bannerSwiper,
-        cascade,
-        headF
+		cascade,
+		headF
 	},
 	data() {
 		return {
 			cityName: "",
 			hNav: [],
+			hBody: [],
 			tabs1: ["中专", "技校", "普高", "职高", "五年制"],
 			activeIndexOne: 0,
 			tabs2: ["航空高铁", "财经贸易", "医药医学", "汽车维修"],
@@ -293,26 +282,25 @@ export default {
 	},
 
 	created() {
-        let app = getApp();
-        
+		let app = getApp();
+		this.gethNav();
+		this.get_company();
 	},
 	mounted() {
-        this.gpsCity();
-        let _this = this;
-        this.$http.post({
-            url:'/uniapp/index.inc.php',
-            data:{
+		this.gpsCity();
+		let _this = this;
+		this.$http.post({
+			url: "/uniapp/index.inc.php",
+			data: {
 				action: "gethNav"
-            },
-            success(res){
-                console.log(res);
-                _this.hNav = res.data;
-                console.log(_this.hNav);
-            },
-            error(err){
-                console.log(err);
-            }
-        })
+			},
+			success(res) {
+				_this.hNav = res.data;
+			},
+			error(err) {
+				console.log(err);
+			}
+		});
 	},
 	methods: {
 		changeActiveIndex(index) {
@@ -342,7 +330,7 @@ export default {
 					that.loadCity(latitude, longitude); //调用高德
 				}
 			});
-        },
+		},
 		//把当前位置的经纬度传给高德地图，调用高德API获取当前地理位置信息
 		loadCity(latitude, longitude) {
 			var that = this;
@@ -351,20 +339,113 @@ export default {
 			});
 			myAmapFun.getRegeo({
 				success: function(data) {
-					var cityCode = data[0].regeocodeData.addressComponent.adcode; //获取城市code
+					var cityCode =
+						data[0].regeocodeData.addressComponent.adcode; //获取城市code
 					that.gpsCode = cityCode;
-					that.city_name =data[0].regeocodeData.addressComponent.city; //获取城市名称
+					that.city_name =
+						data[0].regeocodeData.addressComponent.city; //获取城市名称
 					that.cityName = that.city_name;
 					const key = "mockData";
 					mpvue.getStorage({
 						key,
-						success: res => console.log("获取成功", res.data[0].regeocodeData.addressComponent.province),
+						success: res =>
+							console.log(
+								"获取成功",
+								res.data[0].regeocodeData.addressComponent
+									.province
+							),
 						fail: () => console.log("获取失败"),
 						complete: () => console.log("获取完成")
 					});
 				},
 				fail: function(info) {
 					console.log(info);
+				}
+			});
+        },
+        //获取热门学校
+		gethNav() {
+			let _this = this;
+			this.$http.post({
+				url: "/uniapp/index.inc.php",
+				data: {
+					action: "gethNav"
+				},
+				success(res) {
+					console.log(res);
+					_this.hNav = res.data;
+				},
+				error(err) {
+					console.log(err);
+				}
+			});
+        },
+        //获取热门专业
+		get_company() {
+			let _this = this;
+			this.$http.post({
+				url: "/uniapp/company.inc.php",
+				data: {
+					catid: "99",
+					count: "5"
+				},
+				success(res) {
+					_this.hBody[0] = res.data;
+				},
+				error(err) {
+					console.log(err);
+				}
+			});
+			this.$http.post({
+				url: "/uniapp/company.inc.php",
+				data: {
+					catid: "100",
+					count: "5"
+				},
+				success(res) {
+					_this.hBody[1] = res.data;
+				},
+				error(err) {
+					console.log(err);
+				}
+			});
+			this.$http.post({
+				url: "/uniapp/company.inc.php",
+				data: {
+					catid: "378",
+					count: "5"
+				},
+				success(res) {
+					_this.hBody[2] = res.data;
+				},
+				error(err) {
+					console.log(err);
+				}
+			});
+			this.$http.post({
+				url: "/uniapp/company.inc.php",
+				data: {
+					catid: "101",
+					count: "5"
+				},
+				success(res) {
+					_this.hBody[3] = res.data;
+				},
+				error(err) {
+					console.log(err);
+				}
+			});
+			this.$http.post({
+				url: "/uniapp/company.inc.php",
+				data: {
+					catid: "103",
+					count: "5"
+				},
+				success(res) {
+					_this.hBody[4] = res.data;
+				},
+				error(err) {
+					console.log(err);
 				}
 			});
 		}
@@ -484,7 +565,7 @@ export default {
 	justify-content: center;
 }
 .hot-school {
-	padding-top: 30rpx;
+	padding-top: 20rpx;
 	padding-bottom: 30rpx;
 
 	.h-body {
@@ -492,7 +573,7 @@ export default {
 			.tab-list {
 				padding-top: 30rpx;
 				padding-bottom: 30rpx;
-
+                border-bottom: 1rpx solid #f5f5f5;
 				.list-a {
 					display: flex;
 					.img {
@@ -537,16 +618,14 @@ export default {
 						.hot-zy {
 							font-size: 12px;
 							display: flex;
-							white-space: nowrap;
 							flex-wrap: wrap;
 							span {
 								margin-right: 10px;
-								color: #666;
+                                color: #666;
 							}
 						}
 					}
 				}
-
 				.sch-adress {
 					width: fit-content;
 					padding: 4rpx 20rpx;
@@ -565,7 +644,7 @@ export default {
 }
 
 .hot-major {
-	padding-top: 30rpx;
+	padding-top: 20rpx;
 	padding-bottom: 30rpx;
 	.tab-list {
 		padding-top: 30rpx;
@@ -601,6 +680,7 @@ export default {
 }
 
 .major {
+    padding-top: 20rpx;
 	position: relative;
 	&::after {
 		content: "";
