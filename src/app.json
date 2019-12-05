@@ -12,6 +12,7 @@
     "pages/wzsm/main",
     "pages/wzdt/main",
     "pages/city/main",
+    "pages/zxbm/main",
 
 
     "pages/sch-index/main",
@@ -48,6 +49,12 @@
       {
         "text": "选择学校",
         "pagePath": "pages/xzxx/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },
+      {
+        "text": "在线报名",
+        "pagePath": "pages/zxbm/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       }
