@@ -31,7 +31,7 @@
 
 			<!-- 热门学校 -->
 			<div class="hot-school padding">
-				<a href="#" class="t-head" >
+				<a href="#" class="t-head">
 					<img
 						src="https://m.68jiaoyu.com/skin/image/new/remenxuexxiao.png"
 						mode="widthFix"
@@ -230,19 +230,13 @@
 				<div class="body-tab">
 					<div v-show="index == activeIndexThree" v-for="(item, index) in items" :key="index">
 						<div>
-							<a
-								href="#"
-								class="link dot"
-								v-for="(value, sup) in item"
-								:key="sup"
-							>
+							<a href="#" class="link dot" v-for="(value, sup) in item" :key="sup">
 								<span class="text">{{ item }}</span>
 								<span class="time">11-01</span>
 							</a>
 						</div>
 						<a href="#" class="l-more">查看更多</a>
 					</div>
-					
 				</div>
 			</div>
 
@@ -362,8 +356,8 @@ export default {
 					console.log(info);
 				}
 			});
-        },
-        //获取热门学校
+		},
+		//获取热门学校
 		gethNav() {
 			let _this = this;
 			this.$http.post({
@@ -379,74 +373,44 @@ export default {
 					console.log(err);
 				}
 			});
-        },
-        //获取热门专业
+		},
+		//获取热门专业
 		get_company() {
 			let _this = this;
-			this.$http.post({
-				url: "/uniapp/company.inc.php",
-				data: {
+			let tags = [
+				{
 					catid: "99",
 					count: "5"
 				},
-				success(res) {
-					_this.hBody[0] = res.data;
-				},
-				error(err) {
-					console.log(err);
-				}
-			});
-			this.$http.post({
-				url: "/uniapp/company.inc.php",
-				data: {
+				{
 					catid: "100",
 					count: "5"
 				},
-				success(res) {
-					_this.hBody[1] = res.data;
-				},
-				error(err) {
-					console.log(err);
-				}
-			});
-			this.$http.post({
-				url: "/uniapp/company.inc.php",
-				data: {
+				{
 					catid: "378",
 					count: "5"
 				},
-				success(res) {
-					_this.hBody[2] = res.data;
-				},
-				error(err) {
-					console.log(err);
-				}
-			});
-			this.$http.post({
-				url: "/uniapp/company.inc.php",
-				data: {
+				{
 					catid: "101",
 					count: "5"
 				},
-				success(res) {
-					_this.hBody[3] = res.data;
-				},
-				error(err) {
-					console.log(err);
-				}
-			});
-			this.$http.post({
-				url: "/uniapp/company.inc.php",
-				data: {
+				{
 					catid: "103",
 					count: "5"
-				},
-				success(res) {
-					_this.hBody[4] = res.data;
-				},
-				error(err) {
-					console.log(err);
 				}
+			];
+			tags.map((v, i) => {
+				console.log(v, i);
+				this.$http.post({
+					url: "/uniapp/company.inc.php",
+					data: v,
+					success(res) {
+						_this.hBody[i] = res.data;
+					},
+					error(err) {
+						console.log(err);
+					}
+				});
 			});
 		}
 	}
@@ -573,7 +537,7 @@ export default {
 			.tab-list {
 				padding-top: 30rpx;
 				padding-bottom: 30rpx;
-                border-bottom: 1rpx solid #f5f5f5;
+				border-bottom: 1rpx solid #f5f5f5;
 				.list-a {
 					display: flex;
 					.img {
@@ -621,7 +585,7 @@ export default {
 							flex-wrap: wrap;
 							span {
 								margin-right: 10px;
-                                color: #666;
+								color: #666;
 							}
 						}
 					}
@@ -680,7 +644,7 @@ export default {
 }
 
 .major {
-    padding-top: 20rpx;
+	padding-top: 20rpx;
 	position: relative;
 	&::after {
 		content: "";
