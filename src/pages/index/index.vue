@@ -400,7 +400,6 @@ export default {
 				}
 			];
 			tags.map((v, i) => {
-				console.log(v, i);
 				this.$http.post({
 					url: "/uniapp/company.inc.php",
 					data: v,
